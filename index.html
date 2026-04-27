@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Faceless Portfolio Cohort · Hosted By Matt Par</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0805;--bg-2:#110e0a;--surface:#1a160f;--surface-2:#221c12;--line:rgba(201,151,58,.15);--line-2:rgba(201,151,58,.3);--text:#f8f3e8;--muted:#a69885;--gold:#c9973a;--gold-2:#e2b96a;--gold-3:#f0d79a;--red:#c97a3a}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.65;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(201,151,58,.025) 1px,transparent 1px);background-size:24px 24px;pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;top:-30%;right:-10%;width:70%;height:80%;background:radial-gradient(circle,rgba(201,151,58,.07) 0%,transparent 60%);pointer-events:none;z-index:0}
+.container{max-width:1100px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.container-narrow{max-width:820px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+nav{padding:24px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(10,8,5,.94);backdrop-filter:blur(14px);z-index:100}
+.nav-inner{display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;font-size:18px;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.18em;text-transform:uppercase}
+.nav-cta{padding:10px 22px;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-2) 100%);color:#0a0805;border-radius:8px;text-decoration:none;font-weight:700;font-size:14px}
+section{padding:80px 0}
+.hero{padding:100px 0 60px;text-align:center}
+.eyebrow{display:inline-block;padding:6px 16px;background:rgba(201,151,58,.1);border:1px solid rgba(201,151,58,.3);border-radius:24px;font-size:12px;font-weight:600;color:var(--gold-2);letter-spacing:.2em;text-transform:uppercase;margin-bottom:28px}
+h1{font-size:clamp(40px,5.6vw,64px);font-weight:800;line-height:1.06;letter-spacing:-.03em;margin-bottom:24px}
+h1 em{font-style:normal;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-3) 50%,var(--gold-2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+h2{font-size:clamp(28px,3.8vw,40px);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:16px}
+.section-sub{color:var(--muted);font-size:18px;margin-bottom:48px;max-width:680px}
+h3{font-size:22px;font-weight:700;color:var(--text);margin-bottom:10px}
+h4{font-size:14px;color:var(--gold-2);text-transform:uppercase;letter-spacing:.14em;margin:24px 0 12px;font-weight:700}
+p{color:var(--muted);font-size:17px;max-width:680px}
+.hero p{font-size:19px;margin:0 auto 40px;color:var(--muted)}
+.meta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:56px;padding:32px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.meta-item{text-align:center}
+.meta-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.15em;margin-bottom:10px}
+.meta-value{font-size:20px;color:var(--text);font-weight:700;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.cta-primary{display:inline-block;padding:20px 44px;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-2) 100%);color:#0a0805;text-decoration:none;border-radius:12px;font-weight:700;font-size:16px;box-shadow:0 12px 40px rgba(201,151,58,.3);transition:.2s}
+.cta-primary:hover{transform:translateY(-2px)}
+.cta-outline{display:inline-block;padding:18px 36px;background:transparent;color:var(--gold-2);text-decoration:none;border:1px solid var(--line-2);border-radius:12px;font-weight:600;font-size:15px;transition:.2s}
+.cta-outline:hover{border-color:var(--gold-2)}
+.hero-cta-row{margin-top:36px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.qualifier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px}
+.qualifier-card{padding:32px;background:linear-gradient(180deg,var(--surface) 0%,var(--bg-2) 100%);border:1px solid var(--line);border-radius:14px;transition:.3s}
+.qualifier-card:hover{border-color:var(--line-2)}
+.qualifier-num{font-family:monospace;color:var(--gold-2);font-size:13px;letter-spacing:.15em;margin-bottom:14px;font-weight:700}
+.qualifier-card h3{font-size:18px;margin-bottom:10px}
+.qualifier-card p{font-size:15px;color:var(--muted);line-height:1.6}
+.outcome-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:8px}
+.outcome-card{padding:28px;background:linear-gradient(180deg,var(--surface) 0%,var(--bg-2) 100%);border:1px solid var(--line);border-radius:14px;display:flex;gap:18px;align-items:flex-start}
+.outcome-icon{width:36px;height:36px;border-radius:50%;background:rgba(201,151,58,.1);border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:monospace;color:var(--gold-2);font-weight:700;font-size:14px}
+.outcome-content h4{font-size:16px;color:var(--text);text-transform:none;letter-spacing:0;margin:0 0 6px;font-weight:600}
+.outcome-content p{font-size:14px;color:var(--muted);margin:0;line-height:1.5}
+.host-block{display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:start;margin-top:8px}
+.host-credentials{background:linear-gradient(180deg,var(--surface) 0%,var(--bg-2) 100%);border:1px solid var(--line);border-radius:14px;padding:36px}
+.host-credentials h3{font-size:24px;margin-bottom:6px}
+.host-credentials .host-role{font-size:12px;color:var(--gold-2);letter-spacing:.15em;text-transform:uppercase;margin-bottom:24px;font-weight:700}
+.host-stats{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px;padding-top:24px;border-top:1px solid var(--line)}
+.host-stat{padding:14px 0}
+.host-stat-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.15em;margin-bottom:6px;font-weight:600}
+.host-stat-value{font-size:18px;color:var(--gold-2);font-weight:700}
+.host-bio p{font-size:16px;margin-bottom:16px;color:var(--muted);max-width:none}
+.host-bio p strong{color:var(--text);font-weight:600}
+.agenda-block{padding:40px;background:linear-gradient(180deg,var(--surface) 0%,var(--bg-2) 100%);border:1px solid var(--line);border-radius:14px;margin-bottom:24px}
+.agenda-block h3{margin-bottom:24px;font-size:22px}
+.agenda-block .day-tag{display:inline-block;padding:5px 14px;background:rgba(201,151,58,.15);border:1px solid var(--line-2);border-radius:24px;font-size:11px;font-weight:700;color:var(--gold-2);letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
+.agenda-item{display:grid;grid-template-columns:90px 1fr;gap:24px;padding:18px 0;border-bottom:1px solid var(--line);align-items:start}
+.agenda-item:last-child{border-bottom:0;padding-bottom:0}
+.agenda-item:first-of-type{padding-top:0}
+.agenda-time{font-family:monospace;color:var(--gold-2);font-weight:700;font-size:14px;letter-spacing:.05em;padding-top:4px}
+.agenda-content h4{font-size:16px;color:var(--text);text-transform:none;letter-spacing:0;margin:0 0 6px;font-weight:600}
+.agenda-content p{color:var(--muted);font-size:14px;margin:0;max-width:none;line-height:1.5}
+.logistics-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+.logistics-card{padding:36px;background:linear-gradient(180deg,var(--surface) 0%,var(--bg-2) 100%);border:1px solid var(--line);border-radius:14px}
+.logistics-card .log-eyebrow{font-size:11px;color:var(--gold-2);letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:12px}
+.logistics-card h3{margin-bottom:14px;font-size:20px}
+.logistics-card p{font-size:15px;color:var(--muted);line-height:1.6}
+.logistics-card p strong{color:var(--text)}
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+.pricing-card{padding:40px;background:linear-gradient(180deg,var(--surface) 0%,var(--bg-2) 100%);border:1px solid var(--line);border-radius:18px;display:flex;flex-direction:column}
+.pricing-card.featured{border-color:var(--line-2);background:linear-gradient(180deg,rgba(201,151,58,.06) 0%,var(--bg-2) 100%)}
+.pricing-tag{display:inline-block;padding:5px 14px;background:rgba(201,151,58,.15);border:1px solid var(--line-2);border-radius:24px;font-size:11px;font-weight:700;color:var(--gold-2);letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px;align-self:flex-start}
+.pricing-card h3{font-size:22px;margin-bottom:8px}
+.pricing-amount{font-size:42px;font-weight:800;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-3) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-family:monospace;margin:14px 0 24px;letter-spacing:-.02em}
+.pricing-amount-note{display:block;font-size:13px;color:var(--muted);font-family:'Inter',sans-serif;font-weight:500;margin-top:6px}
+.pricing-includes{list-style:none;padding:0;margin:0 0 28px;flex:1}
+.pricing-includes li{padding:10px 0 10px 26px;position:relative;color:var(--text);font-size:15px;border-bottom:1px solid var(--line)}
+.pricing-includes li:last-child{border-bottom:0}
+.pricing-includes li::before{content:'';width:14px;height:14px;border:1.5px solid var(--gold);border-radius:50%;position:absolute;left:0;top:13px;background:rgba(201,151,58,.08)}
+.pricing-includes li::after{content:'';width:5px;height:8px;border-right:2px solid var(--gold-2);border-bottom:2px solid var(--gold-2);transform:rotate(45deg);position:absolute;left:5px;top:14px}
+.pricing-cta{display:inline-block;padding:16px 32px;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-2) 100%);color:#0a0805;text-decoration:none;border-radius:10px;font-weight:700;font-size:15px;text-align:center;transition:.2s}
+.pricing-cta:hover{transform:translateY(-2px)}
+.pricing-cta.outline{background:transparent;color:var(--gold-2);border:1px solid var(--line-2)}
+.pricing-cta.outline:hover{border-color:var(--gold-2)}
+.faq-item{border-bottom:1px solid var(--line);padding:0}
+.faq-q{padding:24px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;font-size:18px;font-weight:600;color:var(--text);transition:.2s}
+.faq-q:hover{color:var(--gold-2)}
+.faq-toggle{width:24px;height:24px;border-radius:50%;border:1px solid var(--line-2);position:relative;flex-shrink:0;transition:.3s}
+.faq-toggle::before,.faq-toggle::after{content:'';position:absolute;background:var(--gold-2);top:50%;left:50%;transition:.3s}
+.faq-toggle::before{width:10px;height:1.5px;transform:translate(-50%,-50%)}
+.faq-toggle::after{width:1.5px;height:10px;transform:translate(-50%,-50%)}
+.faq-item.open .faq-toggle::after{opacity:0}
+.faq-a{max-height:0;overflow:hidden;transition:.4s}
+.faq-item.open .faq-a{max-height:600px;padding-bottom:24px}
+.faq-a p{font-size:16px;color:var(--muted);max-width:none}
+.cta-section{background:linear-gradient(135deg,rgba(201,151,58,.1) 0%,rgba(226,185,106,.04) 100%);border:1px solid rgba(201,151,58,.3);border-radius:24px;padding:80px 60px;text-align:center;margin:40px 0 60px}
+.cta-section h2{max-width:620px;margin:0 auto 20px}
+.cta-section p{margin:0 auto 36px;max-width:560px;font-size:17px}
+.cta-sign{margin-top:28px;font-size:14px;color:var(--gold-2);font-style:italic}
+.footer{padding:48px 0;border-top:1px solid var(--line);text-align:center}
+.footer p{margin:0 auto;font-size:13px;color:var(--muted);letter-spacing:.05em}
+.floating-cta{position:fixed;bottom:24px;right:24px;padding:16px 28px;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-2) 100%);color:#0a0805;text-decoration:none;border-radius:12px;font-weight:700;font-size:14px;box-shadow:0 12px 40px rgba(201,151,58,.4);z-index:1000;transition:.2s}
+.floating-cta:hover{transform:translateY(-2px)}
+.reveal{opacity:0;transform:translateY(30px);transition:.8s}
+.reveal.in{opacity:1;transform:translateY(0)}
+@media(max-width:768px){
+.meta-grid{grid-template-columns:1fr}
+.qualifier-grid{grid-template-columns:1fr}
+.outcome-grid{grid-template-columns:1fr}
+.host-block{grid-template-columns:1fr;gap:32px}
+.host-stats{grid-template-columns:1fr 1fr}
+.logistics-grid{grid-template-columns:1fr}
+.pricing-grid{grid-template-columns:1fr}
+.cta-section{padding:50px 24px}
+.agenda-item{grid-template-columns:1fr;gap:4px}
+.agenda-block{padding:28px 20px}
+.floating-cta{bottom:16px;right:16px;padding:14px 22px;font-size:13px}
+section{padding:60px 0}
+}
+</style>
+</head>
+<body>
+<nav>
+<div class="container nav-inner">
+<div class="logo">The Faceless Portfolio Cohort</div>
+<a href="https://calendly.com/andreicopy/15min" class="nav-cta" target="_blank">Apply</a>
+</div>
+</nav>
+
+<section class="hero">
+<div class="container">
+<div class="eyebrow reveal">Hosted By Matt Par</div>
+<h1 class="reveal">The <em>Faceless Portfolio</em> Cohort</h1>
+<p class="reveal">For operators who already run one or two monetised channels and want to scale to a multi-channel portfolio. Two days in Miami. Ninety days of implementation. Six to eight peer operators in the room.</p>
+<div class="meta-grid reveal">
+<div class="meta-item"><div class="meta-label">Cohort size</div><div class="meta-value">6-8 operators</div></div>
+<div class="meta-item"><div class="meta-label">Format</div><div class="meta-value">2 days + 90 days</div></div>
+<div class="meta-item"><div class="meta-label">Cadence</div><div class="meta-value">Quarterly</div></div>
+<div class="meta-item"><div class="meta-label">Investment</div><div class="meta-value">$25K-$30K</div></div>
+</div>
+<div class="hero-cta-row reveal">
+<a href="https://calendly.com/andreicopy/15min" target="_blank" class="cta-primary" style="padding:18px 40px;font-size:16px;border-radius:12px;box-shadow:0 12px 40px rgba(201,151,58,.3)">Apply For The Next Intake →</a>
+<a href="#agenda" class="cta-outline">See The Agenda</a>
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+<div class="eyebrow reveal">Who This Is For</div>
+<h2 class="reveal">Three Qualifiers, One Application Gate</h2>
+<p class="section-sub reveal">Cohort is application-only. We're filtering for operators who can get the most out of a peer room of portfolio builders, and who'll add the most signal to it.</p>
+
+<div class="qualifier-grid">
+<div class="qualifier-card reveal">
+<div class="qualifier-num">01</div>
+<h3>You Already Run At Least One Monetised Channel</h3>
+<p>Your channel is producing $5K+/month or has crossed monetisation. You've shipped enough video to know what works at single-channel scale. The Cohort is not where you start. It's where you scale what you've already proven.</p>
+</div>
+<div class="qualifier-card reveal">
+<div class="qualifier-num">02</div>
+<h3>You Want A Portfolio, Not A Personal Brand</h3>
+<p>Your goal is multiple channels under operator-led ownership, not a single creator face. You're treating YouTube as an asset class, not a content hobby. Faceless niches are the lane you're committed to building inside.</p>
+</div>
+<div class="qualifier-card reveal">
+<div class="qualifier-num">03</div>
+<h3>You're Ready To Operate, Not Just Learn</h3>
+<p>You can deploy a 90-day plan after the Cohort. You have the bandwidth, the capital, and the team (or are willing to hire) to act on what comes out of the room. The Cohort produces shipped portfolios, not notebooks of frameworks.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section style="background:linear-gradient(180deg,transparent 0%,rgba(201,151,58,.03) 50%,transparent 100%)">
+<div class="container">
+<div class="eyebrow reveal">What You Walk Away With</div>
+<h2 class="reveal">Six Outcomes, Built Inside Two Days Plus Ninety</h2>
+<p class="section-sub reveal">Not modules. Not slides. Six concrete deliverables that move you from single-channel operator to portfolio CEO.</p>
+
+<div class="outcome-grid">
+<div class="outcome-card reveal">
+<div class="outcome-icon">01</div>
+<div class="outcome-content"><h4>A Portfolio Operator Map</h4><p>Your specific 3-5 channel build-out plan. Niches, RPM lanes, content velocity targets, hiring sequence, capital allocation across the portfolio.</p></div>
+</div>
+<div class="outcome-card reveal">
+<div class="outcome-icon">02</div>
+<div class="outcome-content"><h4>The Niche Selection Framework At Scale</h4><p>How to pick niches that pay top RPM in 2026, avoid AI-content saturation, and lay across each other in a portfolio that compounds rather than competes.</p></div>
+</div>
+<div class="outcome-card reveal">
+<div class="outcome-icon">03</div>
+<div class="outcome-content"><h4>The Production Stack For 5+ Channels</h4><p>The TubeMagic + AI workflow Matt actually runs. What gets automated, what stays human, where the bottleneck moves to next, how the unit economics work at portfolio scale.</p></div>
+</div>
+<div class="outcome-card reveal">
+<div class="outcome-icon">04</div>
+<div class="outcome-content"><h4>A Team Hiring + Org Plan</h4><p>The role ladder. Editors, writers, channel managers, ops. Who to hire first, who to hire last, what each role costs, how to scale headcount against revenue.</p></div>
+</div>
+<div class="outcome-card reveal">
+<div class="outcome-icon">05</div>
+<div class="outcome-content"><h4>A Peer Network Of Portfolio Operators</h4><p>The cohort itself. Five to seven other operators in your weight class, in the room with you for two days, accessible for the 90-day implementation, and beyond.</p></div>
+</div>
+<div class="outcome-card reveal">
+<div class="outcome-icon">06</div>
+<div class="outcome-content"><h4>A 90-Day Implementation Plan</h4><p>Drafted on Day 2, executed across the next 90 days with bi-weekly group calls and 1-on-1 access to Matt. You leave with the plan and the implementation runway both built.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+<div class="eyebrow reveal">Your Host</div>
+<h2 class="reveal">Matt Par</h2>
+<p class="section-sub reveal">Twelve channels. Five companies. The operator behind Tube Accelerator, TubeMagic, and VidAI. Hosting the Cohort in person, on the calls, and through the 90-day implementation.</p>
+
+<div class="host-block">
+<div class="host-credentials reveal">
+<h3>Matt Par</h3>
+<div class="host-role">Founder · Tube Accelerator · TubeMagic · VidAI</div>
+<p style="color:var(--muted);font-size:15px;line-height:1.6;max-width:none">Faceless YouTube portfolio operator. Started uploading video at 17 from a basement in Minnesota. Built and scaled twelve faceless channels into a multi-channel portfolio. Acquired Morise.ai and turned it into TubeMagic. Co-founded VidAI alongside Priyam Raj. Operating out of Miami. Running 5 companies under Moonn Inc.</p>
+<div class="host-stats">
+<div class="host-stat"><div class="host-stat-label">Channels</div><div class="host-stat-value">12+</div></div>
+<div class="host-stat"><div class="host-stat-label">Combined views</div><div class="host-stat-value">1B+</div></div>
+<div class="host-stat"><div class="host-stat-label">Companies</div><div class="host-stat-value">5</div></div>
+<div class="host-stat"><div class="host-stat-label">Public bio claim</div><div class="host-stat-value">$400K+/mo</div></div>
+</div>
+</div>
+<div class="host-bio reveal">
+<p>Most YouTube coaches teach off a single channel. Matt is the operator who scaled the playbook to twelve channels with 1B+ combined views, a SaaS layer (TubeMagic) acquired from Morise.ai, and a separate AI video product (VidAI) shipping in parallel.</p>
+<p><strong>The Faceless Portfolio Cohort is the only format where Matt teaches the portfolio operator playbook directly.</strong> Tube Accelerator is for operators starting their first channel. TubeMagic is for any creator using AI tools. The Cohort is the one explicitly built for operators who already run channels and want to scale to portfolio.</p>
+<p>Two days in Miami, in person. Bi-weekly cohort calls for 90 days. Direct 1-on-1 access for in-deal questions. Capacity is capped at 6-8 operators per intake to keep the room operating-room dense, not lecture-hall thin.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="agenda" style="background:linear-gradient(180deg,transparent 0%,rgba(201,151,58,.03) 50%,transparent 100%)">
+<div class="container">
+<div class="eyebrow reveal">The Agenda</div>
+<h2 class="reveal">Two Days In Miami</h2>
+<p class="section-sub reveal">Day 1 sets the frame and audits each operator's portfolio. Day 2 turns the audits into shipped 90-day plans and kicks off implementation.</p>
+
+<div class="agenda-block reveal">
+<div class="day-tag">Day 1 · Saturday</div>
+<h3>The Frame, The Audit, The Decision Room</h3>
+<div class="agenda-item">
+<div class="agenda-time">9:00 AM</div>
+<div class="agenda-content"><h4>Open + The Frame</h4><p>Why this room. Why the size. What every operator in here ships home with by Sunday night.</p></div>
+</div>
+<div class="agenda-item">
+<div class="agenda-time">9:30 AM</div>
+<div class="agenda-content"><h4>The Portfolio Operator Mindset</h4><p>How a 1-channel system breaks at 5 channels and what changes when you operate 12. The org chart, the cadence, the team structure, the dashboard. The Matt Par version of "what scales and what doesn't."</p></div>
+</div>
+<div class="agenda-item">
+<div class="agenda-time">11:00 AM</div>
+<div class="agenda-content"><h4>Live Channel Audits</h4><p>Each operator brings a real channel. The room and Matt tear it apart. Niche fit, monetisation lane, content velocity, retention math. Most useful 90 minutes most operators spend in a year.</p></div>
+</div>
+<div class="agenda-item">
+<div class="agenda-time">1:30 PM</div>
+<div class="agenda-content"><h4>Niche Selection At Portfolio Scale</h4><p>RPM ladders, market timing, AI-content saturation. Where the top-paying niches sit in 2026 and how to enter without becoming a $300 RPM commodity. Your framework, applied across 5-12 channel portfolios.</p></div>
+</div>
+<div class="agenda-item">
+<div class="agenda-time">3:00 PM</div>
+<div class="agenda-content"><h4>The TubeMagic + AI Stack At Scale</h4><p>How AI tools change the production economics when applied across 5+ channels. What gets automated, what stays human, where the bottleneck moves to next.</p></div>
+</div>
+<div class="agenda-item">
+<div class="agenda-time">4:30 PM</div>
+<div class="agenda-content"><h4>Operator Roundtable</h4><p>The room talks. No script. Each operator brings the one decision they're stuck on right now. Matt runs the room, the cohort gets answers.</p></div>
+</div>
+<div class="agenda-item">
+<div class="agenda-time">5:30 PM</div>
+<div class="agenda-content"><h4>Day 1 Wrap + Dinner</h4><p>Cohort dinner at the venue. Off-script, peer-to-peer, every operator gets time at the table with Matt.</p></div>
+</div>
+</div>
+
+<div class="agenda-block reveal">
+<div class="day-tag">Day 2 · Sunday</div>
+<h3>Implementation, Breakouts, And The 90-Day Plan</h3>
+<div class="agenda-item">
+<div class="agenda-time">9:00 AM</div>
+<div class="agenda-content"><h4>The Hiring + Org Workshop</h4><p>The role ladder for a 5-channel portfolio. Editors, writers, channel managers, ops. Who to hire first, in what sequence, against what revenue milestones.</p></div>
+</div>
+<div class="agenda-item">
+<div class="agenda-time">10:30 AM</div>
+<div class="agenda-content"><h4>Capital Allocation Across The Portfolio</h4><p>Where each marginal dollar goes. Channel launches versus existing-channel scaling. When to acquire versus build. The math behind the allocation decisions Matt actually makes.</p></div>
+</div>
+<div class="agenda-item">
+<div class="agenda-time">12:30 PM</div>
+<div class="agenda-content"><h4>Individual Breakouts (1-on-1 With Matt)</h4><p>Each operator gets a private breakout with Matt. Specific to your portfolio, your situation, your blockers. Implementation-grade, not directional.</p></div>
+</div>
+<div class="agenda-item">
+<div class="agenda-time">3:00 PM</div>
+<div class="agenda-content"><h4>The 90-Day Plan Drafting Session</h4><p>Each operator drafts the next 90 days against the audit and breakouts. The room reviews. Plans get sharpened in real time with peer feedback.</p></div>
+</div>
+<div class="agenda-item">
+<div class="agenda-time">4:30 PM</div>
+<div class="agenda-content"><h4>Implementation Kickoff + Cadence Set</h4><p>The 90-day calendar locks in. Bi-weekly group call schedule. 1-on-1 office hours rhythm. Slack/Discord set up. Implementation begins Monday.</p></div>
+</div>
+<div class="agenda-item">
+<div class="agenda-time">5:30 PM</div>
+<div class="agenda-content"><h4>Close + Send-Off</h4><p>Each operator leaves with: the audit, the breakout notes, the 90-day plan, the cohort network, and the implementation calendar locked in.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+<div class="eyebrow reveal">Logistics</div>
+<h2 class="reveal">Where And When</h2>
+<p class="section-sub reveal">Quarterly intakes. Capped at 6-8 seats. Application-only. The next intake date is set after the application gate closes.</p>
+
+<div class="logistics-grid">
+<div class="logistics-card reveal">
+<div class="log-eyebrow">Where</div>
+<h3>Miami, Florida</h3>
+<p>Two-day in-person event in Miami. Venue confirmed once the cohort is locked. Expect a small high-quality conference space with full AV, catering, and cohort-only access for the duration. <strong>Travel and accommodation are on the operator</strong>, but a recommended hotel block is held within walking distance once the dates are set.</p>
+</div>
+<div class="logistics-card reveal">
+<div class="log-eyebrow">When</div>
+<h3>Quarterly Intakes</h3>
+<p>The cohort runs four times a year. The next intake date is announced once the current application gate closes. <strong>Applications open on a rolling basis</strong>, with seats locked first-come once the cohort fills. After Day 2, the 90-day implementation runs from the Monday following the in-person event.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section style="background:linear-gradient(180deg,transparent 0%,rgba(201,151,58,.03) 50%,transparent 100%)">
+<div class="container">
+<div class="eyebrow reveal">Investment</div>
+<h2 class="reveal">Two Tiers, Same Cohort</h2>
+<p class="section-sub reveal">Same room, same agenda, same 90-day implementation. The Founder tier is reserved for the first four operators in each cohort. Pricing rises after.</p>
+
+<div class="pricing-grid">
+<div class="pricing-card featured reveal">
+<div class="pricing-tag">Founder Seat · First 4</div>
+<h3>Founder Tier</h3>
+<div class="pricing-amount">$25,000<span class="pricing-amount-note">per operator · paid in full or 2-payment plan</span></div>
+<ul class="pricing-includes">
+<li>Two days in Miami, in person</li>
+<li>Live channel audit on Day 1</li>
+<li>1-on-1 breakout with Matt on Day 2</li>
+<li>90-day implementation cohort access</li>
+<li>Bi-weekly group calls for 90 days</li>
+<li>Direct Matt 1-on-1 access for in-deal questions</li>
+<li>Cohort-only channel for peer feedback</li>
+<li>Cohort dinner and informal time with Matt</li>
+</ul>
+<a href="https://calendly.com/andreicopy/15min" target="_blank" class="pricing-cta">Apply For Founder Seat</a>
+</div>
+
+<div class="pricing-card reveal">
+<div class="pricing-tag">Standard Seat · Seats 5-8</div>
+<h3>Standard Tier</h3>
+<div class="pricing-amount">$30,000<span class="pricing-amount-note">per operator · paid in full or 2-payment plan</span></div>
+<ul class="pricing-includes">
+<li>Two days in Miami, in person</li>
+<li>Live channel audit on Day 1</li>
+<li>1-on-1 breakout with Matt on Day 2</li>
+<li>90-day implementation cohort access</li>
+<li>Bi-weekly group calls for 90 days</li>
+<li>Direct Matt 1-on-1 access for in-deal questions</li>
+<li>Cohort-only channel for peer feedback</li>
+<li>Cohort dinner and informal time with Matt</li>
+</ul>
+<a href="https://calendly.com/andreicopy/15min" target="_blank" class="pricing-cta outline">Apply For Standard Seat</a>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="container-narrow">
+<div class="eyebrow reveal">Questions</div>
+<h2 class="reveal">Before You Apply</h2>
+<p class="section-sub reveal">The logistics and the qualification questions. Anything not covered here, we cover on the application call.</p>
+
+<div class="reveal">
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What's actually included in the seat?<div class="faq-toggle"></div></div>
+<div class="faq-a"><p>Two days in Miami in person, including the live channel audit, the 1-on-1 breakout with Matt on Day 2, all sessions, all meals during the event, and the cohort dinner. Plus 90 days of post-event implementation: bi-weekly group calls, direct 1-on-1 access to Matt for in-deal questions, the cohort-only channel for peer feedback, and the implementation calendar locked in. Travel and accommodation are not included, but a hotel block is reserved at a recommended venue within walking distance.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What if I haven't run a monetised channel yet?<div class="faq-toggle"></div></div>
+<div class="faq-a"><p>Then this isn't the right fit yet. The Cohort is built for operators who already have at least one monetised channel ($5K+/month) and want to scale to a portfolio. If you haven't started, Tube Accelerator is the right starting point. If you've started but haven't hit monetisation or $5K/month, the Cohort would be premature. Apply once you've cleared that gate.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I send a partner or co-founder instead of attending myself?<div class="faq-toggle"></div></div>
+<div class="faq-a"><p>The seat is per operator. If you and a partner co-run the portfolio together, contact us about partner pricing for the second seat at a reduced rate. We'd rather have both decision-makers in the room than have one of you take notes for the other.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">How does the 90-day implementation actually work?<div class="faq-toggle"></div></div>
+<div class="faq-a"><p>Bi-weekly group calls (six total over 90 days) walking through what each operator has shipped against their plan. Direct 1-on-1 access to Matt for in-deal questions throughout the 90 days, with response on a published cadence. The cohort-only channel runs throughout for peer feedback. Implementation is yours to ship; the structure is to keep momentum and unblock decisions when they happen.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What's the application process?<div class="faq-toggle"></div></div>
+<div class="faq-a"><p>You book a 20-minute application call. We confirm fit (your channel, your portfolio goal, your bandwidth, your timing). If fit is clear and a seat is open, we lock in the seat. If fit is unclear, we either flag the gap to clear before the next intake, or recommend Tube Accelerator as the right starting point. Cohort is application-only; not every applicant gets a seat.</p></div>
+</div>
+
+<div class="faq-item">
+<div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What if I need to defer to a later cohort?<div class="faq-toggle"></div></div>
+<div class="faq-a"><p>Once a seat is locked and paid, you can defer to the next cohort one time, no questions, no penalty. Beyond one deferral we'd need to discuss whether the current intake is still the right fit. Refunds are not standard once a seat is locked, but we'd much rather have you in the right cohort than the wrong one.</p></div>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+<div class="cta-section reveal">
+<div class="eyebrow">Apply Now</div>
+<h2>Six To Eight Seats Per Intake.<br>Application-Only.</h2>
+<p style="margin-bottom:36px">The application is a 20-minute call. We confirm fit, walk through your portfolio goal, and lock the seat if both sides are aligned. Founder pricing applies to the first four seats per cohort. Standard pricing applies after.</p>
+<a href="https://calendly.com/andreicopy/15min" class="cta-primary" target="_blank">Apply For The Next Intake</a>
+<div class="cta-sign">- Hosted by Matt Par · Built by AG1 Consulting</div>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="container">
+<p>The Faceless Portfolio Cohort · Hosted by Matt Par · Built by AG1 Consulting · 2026</p>
+</div>
+</footer>
+
+<a href="https://calendly.com/andreicopy/15min" target="_blank" class="floating-cta">Apply Now</a>
+
+<script>
+const obs=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add('in')),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(e=>obs.observe(e));
+</script>
+</body>
+</html>
